@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #6C63FF;
+  --color-accent-light: #EEF2FF;
+  --color-surface: #F9FAFB;
+  --font-sans: var(--font-geist);
+}
+
+:root {
+  --accent: #6C63FF;
+  --accent-rgb: 108, 99, 255;
+  --text: #111827;
+  --text-muted: #6B7280;
+  --border: #E5E7EB;
+  --surface: #F9FAFB;
+  --dark-bg: #09090B;
+  --dark-surface: #111115;
+  --dark-border: rgba(255,255,255,0.08);
+}
+
+/* ─── Scroll ─────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+/* ─── Animations ─────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-accent {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.3); }
+  50%       { box-shadow: 0 0 0 10px rgba(var(--accent-rgb), 0); }
+}
+
+/* ─── Utility classes ────────────────────────────── */
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200% auto;
+  animation: shimmer 2.5s linear infinite;
+}
+
+/* Scroll-reveal: JS adds .is-visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── Gradient text ──────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #6C63FF 0%, #A78BFA 50%, #818CF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glass card ─────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Dot grid background ────────────────────────── */
+.dot-grid {
+  background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* ─── Noise overlay (dark sections) ─────────────── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ─── Selection color ────────────────────────────── */
+::selection {
+  background: rgba(var(--accent-rgb), 0.2);
+  color: var(--text);
+}
