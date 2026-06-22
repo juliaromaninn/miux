@@ -17,22 +17,6 @@ const ROLES = [
   'Outro',
 ]
 
-const EXPERIENCE = [
-  'Menos de 1 ano',
-  '1 a 3 anos',
-  '3 a 5 anos',
-  '5 a 10 anos',
-  'Mais de 10 anos',
-]
-
-const CHALLENGES = [
-  'Convencer lideranças e stakeholders',
-  'Métricas e dados dispersos',
-  'Falta de processo estruturado',
-  'Dificuldade em conectar UX e negócio',
-  'Acompanhamento pós-entrega inexistente',
-  'Outro',
-]
 
 interface FieldProps {
   label: string
@@ -76,10 +60,6 @@ export function LeadForm() {
     name: '',
     email: '',
     role: '',
-    company: '',
-    experience_years: '',
-    biggest_challenge: '',
-    wants_interview: false,
     lgpd: false,
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -185,91 +165,24 @@ export function LeadForm() {
         </Field>
       </div>
 
-      {/* Row 2 */}
-      <div className="flex flex-col gap-5">
-        <Field label="Cargo" id="role">
-          <div className="relative">
-            <select
-              id="role"
-              value={form.role}
-              onChange={(e) => set('role', e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Selecione seu cargo</option>
-              {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
-            </select>
-            <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/30">↓</div>
-          </div>
-        </Field>
-        <Field label="Empresa" id="company">
-          <input
-            id="company"
-            name="company"
-            type="text"
-            placeholder="Nome da empresa"
-            value={form.company}
-            onChange={(e) => set('company', e.target.value)}
-            className={inputClass}
-          />
-        </Field>
-      </div>
+      {/* Cargo */}
+      <Field label="Cargo" id="role">
+        <div className="relative">
+          <select
+            id="role"
+            value={form.role}
+            onChange={(e) => set('role', e.target.value)}
+            className={selectClass}
+          >
+            <option value="">Selecione seu cargo</option>
+            {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
+          </select>
+          <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/30">↓</div>
+        </div>
+      </Field>
 
-      {/* Row 3 */}
-      <div className="flex flex-col gap-5">
-        <Field label="Tempo de experiência" id="experience_years">
-          <div className="relative">
-            <select
-              id="experience_years"
-              value={form.experience_years}
-              onChange={(e) => set('experience_years', e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Selecione</option>
-              {EXPERIENCE.map((e) => <option key={e} value={e}>{e}</option>)}
-            </select>
-            <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/30">↓</div>
-          </div>
-        </Field>
-        <Field label="Maior dificuldade ao demonstrar impacto" id="biggest_challenge">
-          <div className="relative">
-            <select
-              id="biggest_challenge"
-              value={form.biggest_challenge}
-              onChange={(e) => set('biggest_challenge', e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Selecione</option>
-              {CHALLENGES.map((c) => <option key={c} value={c}>{c}</option>)}
-            </select>
-            <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/30">↓</div>
-          </div>
-        </Field>
-      </div>
-
-      {/* Checkboxes */}
+      {/* LGPD */}
       <div className="space-y-3 pt-2">
-        <label className="flex items-start gap-3 cursor-pointer group">
-          <div className="relative mt-0.5">
-            <input
-              type="checkbox"
-              checked={form.wants_interview}
-              onChange={(e) => set('wants_interview', e.target.checked)}
-              className="sr-only"
-            />
-            <div className={cn(
-              'w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200',
-              form.wants_interview
-                ? 'bg-[#A1FF62] border-[#A1FF62]'
-                : 'border-white/20 group-hover:border-white/40 bg-transparent'
-            )}>
-              {form.wants_interview && <svg className="w-3 h-3 text-[#201D1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
-            </div>
-          </div>
-          <span className="text-sm text-white/60 leading-relaxed">
-            Quero participar de uma entrevista para ajudar a evoluir o MIUX
-          </span>
-        </label>
-
         <label className="flex items-start gap-3 cursor-pointer group">
           <div className="relative mt-0.5">
             <input
