@@ -37,7 +37,7 @@ export function ObrigadoContent() {
     company: '',
     experience_years: '',
     biggest_challenge: '',
-    wants_interview: false,
+    wants_interview: null as boolean | null,
   })
   const [status, setStatus] = useState<'idle' | 'loading' | 'sent' | 'error'>('idle')
 
@@ -46,7 +46,7 @@ export function ObrigadoContent() {
     if (stored) setEmail(stored)
   }, [])
 
-  function set(field: string, value: string | boolean) {
+  function set(field: string, value: string | boolean | null) {
     setForm((p) => ({ ...p, [field]: value }))
   }
 
@@ -161,34 +161,55 @@ export function ObrigadoContent() {
                 </div>
               </div>
 
-              {/* Entrevista — checkbox */}
-              <label className="flex items-start gap-3 cursor-pointer group pt-1">
-                <div className="relative mt-0.5 shrink-0">
-                  <input
-                    type="checkbox"
-                    checked={form.wants_interview}
-                    onChange={(e) => set('wants_interview', e.target.checked)}
-                    className="sr-only"
-                  />
-                  <div
-                    className={cn(
-                      'w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200',
-                      form.wants_interview
-                        ? 'bg-[#A1FF62] border-[#A1FF62]'
-                        : 'border-white/20 group-hover:border-white/40 bg-transparent',
-                    )}
-                  >
-                    {form.wants_interview && (
-                      <svg className="w-3 h-3 text-[#201D1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                      </svg>
-                    )}
-                  </div>
-                </div>
-                <span className="text-sm text-white/60 leading-relaxed">
-                  <span className="font-semibold text-white/80">Entrevista</span> — aceito participar de uma conversa rápida (15 min) para ajudar a evoluir o MIUX
+              {/* Entrevista — radio buttons */}
+              <div className="flex flex-col gap-3 pt-1">
+                <span className="text-sm font-medium text-white/70">
+                  Gostaria de participar de uma conversa rápida para ajudar a evoluir o MIUX?
                 </span>
-              </label>
+                <div className="flex gap-3">
+                  {([['Sim', true], ['Não', false]] as const).map(([label, val]) => {
+                    const checked = form.wants_interview === val
+                    return (
+                      <label
+                        key={label}
+                        className={cn(
+                          'flex items-center gap-2.5 flex-1 rounded-xl border px-4 py-3 cursor-pointer transition-all duration-200',
+                          checked
+                            ? 'border-[#A1FF62]/60 bg-[#A1FF62]/[0.08]'
+                            : 'border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]',
+                        )}
+                      >
+                        <input
+                          type="radio"
+                          name="wants_interview"
+                          className="sr-only"
+                          checked={checked}
+                          onChange={() => set('wants_interview', val)}
+                        />
+                        {/* Custom radio dot */}
+                        <div
+                          className={cn(
+                            'w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-all duration-200',
+                            checked ? 'border-[#A1FF62]' : 'border-white/25',
+                          )}
+                        >
+                          {checked && (
+                            <div className="w-2 h-2 rounded-full bg-[#A1FF62]" />
+                          )}
+                        </div>
+                        <span
+                          className={cn(
+                            'text-sm font-semibold transition-colors',
+                            checked ? 'text-[#A1FF62]' : 'text-[#B8B8B8]',
+                          )}
+                        >
+                          {label}
+                        </span>
+                      </label>
+                    )
+                  })}
+                </div>
+              </div>
 
               {/* Dificuldades */}
               <div className="flex flex-col gap-1.5">
