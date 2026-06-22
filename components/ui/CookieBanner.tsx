@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
-import { Button } from './Button'
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 const HOTJAR_ID = process.env.NEXT_PUBLIC_HOTJAR_ID
@@ -73,21 +72,27 @@ export function CookieBanner() {
 
       {/* Consent Banner UI */}
       {consent === 'pending' && (
-        <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-4xl rounded-2xl border border-gray-200 bg-white/95 p-6 shadow-2xl backdrop-blur-md md:bottom-6">
+        <div className="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-4xl rounded-2xl border border-white/[0.08] bg-[#312E2E]/95 p-6 shadow-2xl backdrop-blur-md md:bottom-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-8">
             <div className="flex-1">
-              <h3 className="font-semibold text-gray-900 mb-1">Privacidade e Cookies 🍪</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <h3 className="font-semibold text-[#F4F4F4] mb-1">Privacidade e Cookies 🍪</h3>
+              <p className="text-sm text-[#B8B8B8] leading-relaxed">
                 Nós usamos cookies para melhorar sua experiência, analisar o tráfego do site e entender o comportamento de uso do framework MIUX. Seus dados são tratados em conformidade com a LGPD.
               </p>
             </div>
             <div className="flex gap-3 shrink-0">
-              <Button variant="ghost" size="sm" onClick={handleDecline}>
+              <button
+                onClick={handleDecline}
+                className="rounded-full px-5 py-2.5 text-sm font-semibold text-[#B8B8B8] hover:text-[#F4F4F4] hover:bg-white/5 transition-colors"
+              >
                 Recusar
-              </Button>
-              <Button variant="primary" size="sm" onClick={handleAccept}>
+              </button>
+              <button
+                onClick={handleAccept}
+                className="rounded-full bg-[#A1FF62] px-5 py-2.5 text-sm font-semibold text-[#201D1D] hover:bg-[#B4FF85] transition-colors"
+              >
                 Aceitar todos
-              </Button>
+              </button>
             </div>
           </div>
         </div>

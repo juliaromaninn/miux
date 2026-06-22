@@ -38,13 +38,13 @@ const BENEFITS = [
 
 export function BenefitsSection() {
   return (
-    <section id="beneficios" className="py-28 px-6 lg:px-8 bg-white">
+    <section id="beneficios" className="py-28 px-6 lg:px-8 bg-[#201D1D]">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <AnimateIn>
           <div className="max-w-xl mb-16">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#6C63FF] mb-4">Benefícios</p>
-            <h2 className="text-4xl sm:text-5xl font-black text-gray-900 leading-tight">
+            <p className="text-label-eyebrow font-semibold text-[#A1FF62] mb-5">Benefícios</p>
+            <h2 className="text-h2 text-[#F4F4F4]">
               Por que usar o MIUX
             </h2>
           </div>
@@ -55,31 +55,29 @@ export function BenefitsSection() {
           {BENEFITS.map((b, i) => (
             <AnimateIn key={b.title} delay={i * 70}>
               <div
-                className={`group relative rounded-2xl p-7 border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-default ${
+                className={`group relative h-full rounded-2xl p-7 border transition-all duration-300 hover:-translate-y-1 cursor-default ${
                   b.highlight
-                    ? 'border-[#6C63FF]/30 bg-[#EEF2FF] hover:shadow-[#6C63FF]/10'
-                    : 'border-gray-100 bg-white hover:border-gray-200'
+                    ? 'border-transparent bg-[#A1FF62]'
+                    : 'border-white/[0.07] bg-[#312E2E] hover:border-white/[0.14]'
                 }`}
               >
-                {/* Icon */}
                 <div
                   className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-5 transition-transform duration-300 group-hover:scale-110 ${
-                    b.highlight ? 'bg-[#6C63FF] text-white' : 'bg-gray-50'
+                    b.highlight ? 'bg-[#201D1D]' : 'bg-white/[0.05]'
                   }`}
                 >
                   {b.icon}
                 </div>
 
-                <h3 className={`text-base font-bold mb-2 ${b.highlight ? 'text-[#6C63FF]' : 'text-gray-900'}`}>
+                <h3 className={`text-base font-bold mb-2 ${b.highlight ? 'text-[#201D1D]' : 'text-[#F4F4F4]'}`}>
                   {b.title}
                 </h3>
-                <p className={`text-sm leading-relaxed ${b.highlight ? 'text-[#6C63FF]/70' : 'text-gray-500'}`}>
+                <p className={`text-sm leading-relaxed ${b.highlight ? 'text-[#201D1D]/70' : 'text-[#B8B8B8]'}`}>
                   {b.desc}
                 </p>
 
-                {/* Hover arrow */}
                 <div className="absolute bottom-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`w-4 h-4 ${b.highlight ? 'text-[#201D1D]/40' : 'text-white/20'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>

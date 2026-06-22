@@ -25,16 +25,16 @@ export function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         scrolled
-          ? 'bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm'
+          ? 'bg-[#201D1D]/85 backdrop-blur-xl border-b border-white/[0.07]'
           : 'bg-transparent'
       )}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Wordmark */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-xl font-black tracking-tight text-[#6C63FF]">MIUX</span>
-            <span className="hidden sm:block text-xs font-medium text-gray-400 pt-0.5">
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <span className="text-xl font-bold tracking-tight text-[#F4F4F4]">MIUX</span>
+            <span className="hidden sm:block text-xs font-medium text-[#B8B8B8] pt-0.5">
               Mapa de Impacto de UX
             </span>
           </Link>
@@ -45,7 +45,7 @@ export function Header() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-sm font-medium text-[#B8B8B8] hover:text-[#F4F4F4] transition-colors"
               >
                 {item.label}
               </a>
@@ -56,14 +56,14 @@ export function Header() {
           <div className="flex items-center gap-4">
             <a
               href="#acesso"
-              className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-[#6C63FF] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#5A52E0] transition-all hover:shadow-lg hover:shadow-[#6C63FF]/25 hover:-translate-y-px"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#A1FF62] px-5 py-2.5 text-sm font-semibold text-[#201D1D] transition-all hover:bg-[#B4FF85] hover:-translate-y-px hover:shadow-[0_8px_24px_-6px_rgba(161,255,98,0.5)]"
             >
               Acessar Framework
             </a>
 
             {/* Mobile burger */}
             <button
-              className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+              className="md:hidden p-2 rounded-lg text-[#B8B8B8] hover:bg-white/5 transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Menu"
             >
@@ -79,13 +79,13 @@ export function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-[#201D1D] border-t border-white/[0.07] px-6 py-4 flex flex-col gap-4">
           {NAV.map((item) => (
             <a
               key={item.label}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="text-sm font-medium text-gray-700 py-1"
+              className="text-sm font-medium text-[#B8B8B8] py-1"
             >
               {item.label}
             </a>
@@ -93,7 +93,7 @@ export function Header() {
           <a
             href="#acesso"
             onClick={() => setMenuOpen(false)}
-            className="rounded-xl bg-[#6C63FF] px-5 py-3 text-sm font-semibold text-white text-center"
+            className="rounded-full bg-[#A1FF62] px-5 py-3 text-sm font-semibold text-[#201D1D] text-center"
           >
             Acessar Framework
           </a>

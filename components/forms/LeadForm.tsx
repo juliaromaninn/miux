@@ -47,7 +47,7 @@ function Field({ label, id, error, required, children }: FieldProps) {
     <div className="flex flex-col gap-1.5">
       <label htmlFor={id} className="text-sm font-medium text-white/70">
         {label}
-        {required && <span className="text-[#6C63FF] ml-1">*</span>}
+        {required && <span className="text-[#A1FF62] ml-1">*</span>}
       </label>
       {children}
       {error && <span className="text-xs text-red-400">{error}</span>}
@@ -56,16 +56,16 @@ function Field({ label, id, error, required, children }: FieldProps) {
 }
 
 const inputClass = cn(
-  'w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3.5 text-sm text-white placeholder-white/25',
+  'w-full rounded-xl border border-white/10 bg-[#201D1D] px-4 py-3.5 text-sm text-white placeholder-white/25',
   'transition-all duration-200',
-  'focus:outline-none focus:border-[#6C63FF]/60 focus:bg-white/8 focus:ring-2 focus:ring-[#6C63FF]/20',
+  'focus:outline-none focus:border-[#A1FF62]/60 focus:ring-2 focus:ring-[#A1FF62]/20',
   'hover:border-white/20',
 )
 
 const selectClass = cn(
   inputClass,
   'appearance-none cursor-pointer',
-  '[&_option]:bg-[#1A1A2E] [&_option]:text-white',
+  '[&_option]:bg-[#201D1D] [&_option]:text-white',
 )
 
 export function LeadForm() {
@@ -146,11 +146,11 @@ export function LeadForm() {
   if (state === 'success') {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="w-16 h-16 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center text-3xl mb-6 animate-pulse">
+        <div className="w-16 h-16 rounded-full bg-[#A1FF62]/20 border border-[#A1FF62]/40 flex items-center justify-center text-3xl text-[#A1FF62] mb-6" style={{ animation: 'pulse-lime 1.8s infinite' }}>
           ✓
         </div>
         <p className="text-xl font-bold text-white mb-2">Perfeito! Estamos te redirecionando…</p>
-        <p className="text-sm text-white/40">Seu acesso está sendo liberado</p>
+        <p className="text-sm text-[#B8B8B8]">Seu acesso está sendo liberado</p>
       </div>
     )
   }
@@ -158,7 +158,7 @@ export function LeadForm() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
       {/* Row 1 */}
-      <div className="grid sm:grid-cols-2 gap-5">
+      <div className="flex flex-col gap-5">
         <Field label="Nome completo" id="name" error={errors.name} required>
           <input
             id="name"
@@ -186,7 +186,7 @@ export function LeadForm() {
       </div>
 
       {/* Row 2 */}
-      <div className="grid sm:grid-cols-2 gap-5">
+      <div className="flex flex-col gap-5">
         <Field label="Cargo" id="role">
           <div className="relative">
             <select
@@ -215,7 +215,7 @@ export function LeadForm() {
       </div>
 
       {/* Row 3 */}
-      <div className="grid sm:grid-cols-2 gap-5">
+      <div className="flex flex-col gap-5">
         <Field label="Tempo de experiência" id="experience_years">
           <div className="relative">
             <select
@@ -259,10 +259,10 @@ export function LeadForm() {
             <div className={cn(
               'w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200',
               form.wants_interview
-                ? 'bg-[#6C63FF] border-[#6C63FF]'
+                ? 'bg-[#A1FF62] border-[#A1FF62]'
                 : 'border-white/20 group-hover:border-white/40 bg-transparent'
             )}>
-              {form.wants_interview && <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+              {form.wants_interview && <svg className="w-3 h-3 text-[#201D1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
             </div>
           </div>
           <span className="text-sm text-white/60 leading-relaxed">
@@ -281,11 +281,11 @@ export function LeadForm() {
             <div className={cn(
               'w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200',
               form.lgpd
-                ? 'bg-[#6C63FF] border-[#6C63FF]'
+                ? 'bg-[#A1FF62] border-[#A1FF62]'
                 : 'border-white/20 group-hover:border-white/40 bg-transparent',
               errors.lgpd && 'border-red-500/60'
             )}>
-              {form.lgpd && <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+              {form.lgpd && <svg className="w-3 h-3 text-[#201D1D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
             </div>
           </div>
           <span className="text-sm text-white/60 leading-relaxed">
@@ -309,11 +309,11 @@ export function LeadForm() {
         type="submit"
         disabled={state === 'loading'}
         className={cn(
-          'w-full rounded-2xl py-4 text-base font-bold transition-all duration-300',
+          'w-full rounded-full py-4 text-base font-bold transition-all duration-300',
           'flex items-center justify-center gap-3',
           state === 'loading'
-            ? 'bg-[#6C63FF]/50 cursor-wait text-white/60'
-            : 'bg-[#6C63FF] text-white hover:bg-[#5A52E0] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#6C63FF]/30'
+            ? 'bg-[#A1FF62]/50 cursor-wait text-[#201D1D]/60'
+            : 'bg-[#A1FF62] text-[#201D1D] hover:bg-[#B4FF85] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-10px_rgba(161,255,98,0.5)]'
         )}
       >
         {state === 'loading' ? (
@@ -334,8 +334,8 @@ export function LeadForm() {
         )}
       </button>
 
-      <p className="text-xs text-white/30 text-center">
-        Gratuito. Sem spam. Cancelamento imediato.
+      <p className="text-xs text-[#6E6A6A] text-center">
+        Gratuito. Sem spam.
       </p>
     </form>
   )
